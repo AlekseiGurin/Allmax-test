@@ -1,23 +1,32 @@
-import React from 'react';
-import { render } from 'react-dom';
-import './App.css';
-import Header from './Header.js';
-import Content from './Content.js';
+import React from "react"
+import './App.css'
+import Header from './components/Header.js'
+import TasksContainer from './components/TasksContainer.js'
 
+export default class App extends React.Component {
+	constructor() {
+		super()
+		this.state = {
+			task: []
+		}
+		console.log(this.state.task)
+	}
+	handleAddTask = data => {
+		const newTask = [data, ...this.state.task]
+		this.setState({task: newTask})
 
-export default class BigApp extends React.Component {
-  render() {
+	}
 
-  	const lol = 'kek';
-    return (
-      <div className="big-app">
-      	<Header />
-      	<Content />
-      </div>
-    )
-  }
-};
-render(
-  <BigApp />,
-  document.getElementById('root')
-);
+	render() {	
+		return (
+			<div className="app">
+				<Header onAddTask={this.handleAddTask} />
+				<TasksContainer data={this.state.task} />
+			</div>
+		)
+	};
+
+}
+
+  
+
