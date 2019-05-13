@@ -9,27 +9,41 @@ export default class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			displeyModal: "displey-none",
+			visibleModal: false,
 			task: []
 		}
 	}
 
-	handleAddTask = data => {
+	modalVisibleHandler = () => {
+		this.setState({visibleModal:true})
+	}
+
+	modalCloseHandler = () => {
+		this.setState({visibleModal:false})
+	}
+
+	handleAddTask = (data) => {
 		const newTask = [data, ...this.state.task]
 		this.setState({task: newTask})
+		console.log(newTask)
+	}
 
+	removeTask =()=> {
+		
 	}
 
 	render() {	
 
 		return (
 			<div className="app">
-				<Header onAddTask={this.handleAddTask} />
+				<Header onVisibleHandler={this.modalVisibleHandler} />
 				<TasksContainer data={this.state.task} />
-				<Modal 
+				{this.state.visibleModal && <Modal
+					onCloseHandler={this.modalCloseHandler} 
+					onAddTask={this.handleAddTask}
 					dataModal={this.state}
-					className={this.state.displeyModal}
-				/>
+				/>}
+				
 			</div>
 		)
 	};

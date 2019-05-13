@@ -2,6 +2,7 @@ import React from 'react'
 import Task from './Task.js'
 
 export default class TasksContainer extends React.Component {
+
  	renderTask = () => {
  		const {data}=this.props
  		let newTask = null
@@ -9,9 +10,10 @@ export default class TasksContainer extends React.Component {
  			newTask = data.map(function(item){
  			return(<Task key={item.id} text={item.text} />)
  	 		})
- 		} else (alert("нет задач"))
+ 		} else {return(<div>Нет задач</div>)}
  		return(newTask)
 	}
+
 	render() {
 		return (
 			<div className="tasks-container">
