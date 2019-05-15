@@ -10,8 +10,9 @@ export default class App extends React.Component {
 		super()
 		this.state = {
 			visibleModal: false,
-			task: []
+			tasks: []
 		}
+		this.removeTask=this.removeTask.bind(this)
 	}
 
 	modalVisibleHandler = () => {
@@ -23,13 +24,15 @@ export default class App extends React.Component {
 	}
 
 	handleAddTask = (data) => {
-		const newTask = [data, ...this.state.task]
-		this.setState({task: newTask})
-		console.log(newTask)
+		const newTasks = [data, ...this.state.tasks]
+		this.setState({tasks: newTasks})
 	}
 
-	removeTask =()=> {
-		
+	removeTask = (i) => {
+		let lastTask = this.state.tasks
+		console.log(id)
+		lastTask.splice(i,1)
+		this.setState({tasks: lastTask})
 	}
 
 	render() {	
@@ -37,7 +40,10 @@ export default class App extends React.Component {
 		return (
 			<div className="app">
 				<Header onVisibleHandler={this.modalVisibleHandler} />
-				<TasksContainer data={this.state.task} />
+				<TasksContainer 
+					onRemoveTask={this.removeTask}
+					data={this.state.tasks} 
+				/>
 				{this.state.visibleModal && <Modal
 					onCloseHandler={this.modalCloseHandler} 
 					onAddTask={this.handleAddTask}

@@ -2,50 +2,45 @@ import React from 'react'
 import uuid from 'uuid';
 
 export default class Modal extends React.Component {
-	constructor() {
-		super()
-		this.state = {
-			textAdd: ""
-		}
-	}
 	
-	handleChange =(event)=> {
-		const wrapper = document.getElementById('jsWrapper')
-		if (event.target === wrapper) {
-			this.props.onCloseHandler()
-		} else {
-			let textTasc = event.target.value
-		this.setState({textAdd: textTasc})
-		}			
-	} 
-
-	handleClick = ()=> {
-			this.props.onAddTask({
-				id: uuid(),
-				text: this.state.textAdd
-			})
-			this.props.onCloseHandler()
+	handleCreateTaskSubmit = (e)=> {
+			e.preventDefault();
+			if (this.textInput.value) {
+				this.props.onAddTask({
+					id: uuid(),
+					text: this.textInput.value	
+					})	
+				this.props.onCloseHandler()
+				} else {this.props.onCloseHandler()}	
 		}
 
-	handleClickClose = () => {
-		this.props.onCloseHandler()
+	handleClickCloseModal =(e)=> {
+		const wrapper = document.getElementById('jsWrapper')
+		if (e.target === wrapper){
+			this.props.onCloseHandler()
+		}
 	}
 
 	render() {
 		return(
 				<div 
+					onClick={this.handleClickCloseModal}
 					id="jsWrapper" 
 					className="modal-wrapper"
-					onClick={this.handleChange}
 				>
-				<div className="modal-container">
-				  <input 
-				  	type="text" 
-				  	placeholder="Введите задачу"
-				  	onChange={this.handleChange} 
-				  />
-				  <button onClick={this.handleClick}>ok</button>
-				  <button onClick={this.handleClickClose}>отмена</button> 
+				<div 
+					className="modal-container"	
+				>
+					<form onSubmit={this.handleCreateTaskSubmit}>
+				  		<input 
+				  			ref={(input)=> {this.textInput=input}}
+				  			id="jsInput"
+				  			type="text" 
+				  			placeholder="Введите задачу"
+				  		/>
+				  		<button htmlype="submit">ok</button>
+				  		<button>отмена</button> 
+					</form>
 				</div>
 				</div>
 			)
