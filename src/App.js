@@ -6,8 +6,8 @@ import Modal from './components/Modal.js'
 
 export default class App extends React.Component {
 
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			visibleModal: false,
 			tasks: []
@@ -28,11 +28,23 @@ export default class App extends React.Component {
 		this.setState({tasks: newTasks})
 	}
 
-	removeTask = (i) => {
-		let lastTask = this.state.tasks
-		console.log(id)
-		lastTask.splice(i,1)
-		this.setState({tasks: lastTask})
+	removeTask = (id) => {
+		const lastTask = this.state.tasks.filter(task=>task.id !== id)
+		this.setState({tasks:lastTask})
+	}
+
+	changeStatusTask = (status,id) => {
+		this.setState(prevState => {
+			const updateTask = prevState.tasks.map(task=>{
+				if (task.id === id) {
+					console.log (task.status);
+					task.status='DONE';
+				}
+				return task;
+			})
+			return {tasks: updateTask};
+		})
+		
 	}
 
 	render() {	
@@ -41,6 +53,7 @@ export default class App extends React.Component {
 			<div className="app">
 				<Header onVisibleHandler={this.modalVisibleHandler} />
 				<TasksContainer 
+				    onChangeStatusTask={this.changeStatusTask}
 					onRemoveTask={this.removeTask}
 					data={this.state.tasks} 
 				/>

@@ -7,6 +7,7 @@ export default class Modal extends React.Component {
 			e.preventDefault();
 			if (this.textInput.value) {
 				this.props.onAddTask({
+					status: 'OPEN',
 					id: uuid(),
 					text: this.textInput.value	
 					})	
@@ -16,7 +17,8 @@ export default class Modal extends React.Component {
 
 	handleClickCloseModal =(e)=> {
 		const wrapper = document.getElementById('jsWrapper')
-		if (e.target === wrapper){
+		const btnCancel = document.getElementById('cancel')
+		if (e.target === wrapper || e.target === btnCancel){
 			this.props.onCloseHandler()
 		}
 	}
@@ -38,8 +40,8 @@ export default class Modal extends React.Component {
 				  			type="text" 
 				  			placeholder="Введите задачу"
 				  		/>
-				  		<button htmlype="submit">ok</button>
-				  		<button>отмена</button> 
+				  		<button id="btnSubmit" htmlype="submit">ok</button>
+				  		<button type="button" id="cancel" >отмена</button> 
 					</form>
 				</div>
 				</div>

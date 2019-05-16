@@ -31,7 +31,7 @@ code {
 }
 .tasks-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
 
 }
@@ -78,3 +78,8 @@ code {
   display: none;
 }
 
+.done {
+  font-style: italic;
+  text-decoration: line-through;
+   color: #C0B4B4;
+}
