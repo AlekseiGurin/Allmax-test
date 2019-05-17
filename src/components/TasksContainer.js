@@ -1,26 +1,22 @@
-import React from 'react'
-import Task from './Task.js'
+import React from 'react';
+import Task from './Task.js';
 
 export default class TasksContainer extends React.Component {
 	
- 	renderTask = (i) => {
- 		const {onChangeStatusTask} = this.props
- 		const {onRemoveTask} = this.props
- 		const {data} = this.props
- 		let newTask = null
+ 	renderTask = () => {
+ 		const {onChangeStatusTask,onRemoveTask,data} = this.props;
+ 		let newTask = null;
  		if (data.length) {
- 			newTask = data.map(function(item){
+ 			newTask = data.map(item => {
  			return(<Task 
  						 changeStatusTask={onChangeStatusTask}
  						 removeTask={onRemoveTask}
- 						 status={item.status}
- 						 id={item.id}
  						 key={item.id} 
- 						 text={item.text}
- 					/>)
- 	 		})
+ 						 data={item}
+ 					/>);
+ 	 		});
  		} else {return(<div>Нет задач</div>)}
- 		return(newTask)
+ 		return(newTask);
 	}
 
 	render() {
@@ -28,6 +24,6 @@ export default class TasksContainer extends React.Component {
 			<div className="tasks-container">
 				{this.renderTask()}
 			</div>
-			)
-	}
-}
+			);
+	};
+};

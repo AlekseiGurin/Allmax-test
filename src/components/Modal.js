@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import uuid from 'uuid';
 
 export default class Modal extends React.Component {
@@ -10,18 +10,18 @@ export default class Modal extends React.Component {
 					status: 'OPEN',
 					id: uuid(),
 					text: this.textInput.value	
-					})	
-				this.props.onCloseHandler()
-				} else {this.props.onCloseHandler()}	
-		}
+					});
+				this.props.onCloseHandler();
+				} else {this.props.onCloseHandler()};	
+		};
 
 	handleClickCloseModal =(e)=> {
-		const wrapper = document.getElementById('jsWrapper')
-		const btnCancel = document.getElementById('cancel')
+		const wrapper = document.getElementById('jsWrapper');
+		const btnCancel = document.getElementById('cancel');
 		if (e.target === wrapper || e.target === btnCancel){
-			this.props.onCloseHandler()
-		}
-	}
+			this.props.onCloseHandler();
+		};
+	};
 
 	render() {
 		return(
@@ -45,6 +45,6 @@ export default class Modal extends React.Component {
 					</form>
 				</div>
 				</div>
-			)
-	}
-}
+			);
+	};
+};
