@@ -1,25 +1,26 @@
 import React from 'react';
 import uuid from 'uuid';
+import PropTypes from 'prop-types';
 
-export default class Modal extends React.Component {
+ class Modal extends React.Component {
 	
-	handleCreateTaskSubmit = (e)=> {
+	handleCreateTaskSubmit =(e)=> {
 			e.preventDefault();
 			if (this.textInput.value) {
-				this.props.onAddTask({
+				this.props.addTask({
 					status: 'OPEN',
 					id: uuid(),
 					text: this.textInput.value	
 					});
-				this.props.onCloseHandler();
-				} else {this.props.onCloseHandler()};	
+				this.props.closeCreateTaskModal();
+				} else {this.props.closeCreateTaskModal()};	
 		};
 
 	handleClickCloseModal =(e)=> {
 		const wrapper = document.getElementById('jsWrapper');
 		const btnCancel = document.getElementById('cancel');
 		if (e.target === wrapper || e.target === btnCancel){
-			this.props.onCloseHandler();
+			this.props.closeCreateTaskModal();
 		};
 	};
 
@@ -48,3 +49,10 @@ export default class Modal extends React.Component {
 			);
 	};
 };
+
+Modal.propTypes = {
+	closeCreateTaskModal: PropTypes.func.isRequired,
+	addTask: PropTypes.func.isRequired
+};
+
+export default Modal;

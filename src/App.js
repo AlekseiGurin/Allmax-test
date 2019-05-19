@@ -15,17 +15,18 @@ export default class App extends React.Component {
 		this.removeTask=this.removeTask.bind(this)
 	};
 
-	modalVisibleHandler = () => {
+	openCreateTaskModalVisible = () => {
 		this.setState({visibleModal:true})
 	};
 
-	modalCloseHandler = () => {
+	closeCreateTaskModal= () => {
 		this.setState({visibleModal:false})
 	};
 
-	handleAddTask = (data) => {
-		const newTasks = [data, ...this.state.tasks]
+	addTask = (taskList) => {
+		const newTasks = [taskList, ...this.state.tasks]
 		this.setState({tasks: newTasks})
+		console.log(taskList)
 	};
 
 	removeTask = (id) => {
@@ -50,22 +51,23 @@ export default class App extends React.Component {
 
 		return (
 			<div className="app">
-				<Header onVisibleHandler={this.modalVisibleHandler} />
+				<Header openCreateTaskModalVisible={this.openCreateTaskModalVisible} />
 				<TasksContainer 
-				    onChangeStatusTask={this.changeStatusTask}
-					onRemoveTask={this.removeTask}
-					data={this.state.tasks} 
+				    changeStatusTask={this.changeStatusTask}
+					removeTask={this.removeTask}
+					taskList={this.state.tasks} 
 				/>
-				{this.state.visibleModal && <Modal
-					onCloseHandler={this.modalCloseHandler} 
-					onAddTask={this.handleAddTask}
-					dataModal={this.state}
-				/>}
+				{this.state.visibleModal && 
+					<Modal
+						closeCreateTaskModal={this.closeCreateTaskModal} 
+						addTask={this.addTask}
+						dataModal={this.state}
+					/>
+				}
 				
 			</div>
 		);
 	};
-
 };
 
   

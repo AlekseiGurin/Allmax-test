@@ -1,29 +1,30 @@
 import React from 'react';
 import Task from './Task.js';
+import PropTypes from 'prop-types';
 
-export default class TasksContainer extends React.Component {
+const TasksContainer = ({changeStatusTask,removeTask,taskList}) => (
+	<div className="tasks-container">
+ 		{
+ 			taskList.length ? (
+ 				taskList.map(item => (
+ 						<Task 
+ 						 	changeStatusTask={changeStatusTask}
+ 						 	removeTask={removeTask}
+ 						 	key={item.id} 
+ 						 	taskList={item}
+ 						/>
+ 					))
+ 				) : (
+ 					<div>Нет задач</div>
+ 			)
+ 		}	
+	</div>			
+);
 	
- 	renderTask = () => {
- 		const {onChangeStatusTask,onRemoveTask,data} = this.props;
- 		let newTask = null;
- 		if (data.length) {
- 			newTask = data.map(item => {
- 			return(<Task 
- 						 changeStatusTask={onChangeStatusTask}
- 						 removeTask={onRemoveTask}
- 						 key={item.id} 
- 						 data={item}
- 					/>);
- 	 		});
- 		} else {return(<div>Нет задач</div>)}
- 		return(newTask);
-	}
-
-	render() {
-		return (
-			<div className="tasks-container">
-				{this.renderTask()}
-			</div>
-			);
-	};
+TasksContainer.propTypes = {
+	taskList: PropTypes.arrayOf(PropTypes.object),
+	changeStatusTask: PropTypes.func.isRequired,
+	removeTask: PropTypes.func.isRequired
 };
+
+export default TasksContainer;

@@ -1,20 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default  class Task extends React.Component {
 	
 	handlerRemoveTask =(e)=> {
-		const {id} = this.props.data;
+		const {id} = this.props.taskList;
 		this.props.removeTask(id,e);	 
 	};
 
 	handlerChangeStatusTask =(e)=> {
-		const {status,id} = this.props.data;
+		const {status,id} = this.props.taskList;
 		this.props.changeStatusTask(status,id);
 
 	};
 
     render () {
-    	const {text,status}=this.props.data;
+    	const {text,status}=this.props.taskList;
         return (
             <div className="task" >
             	<div className={status.toLowerCase()}>
@@ -29,4 +30,16 @@ export default  class Task extends React.Component {
             </div>
         );
     };
+};
+
+Task.propTypes = {
+	taskList: PropTypes.shape(
+			{
+				status: PropTypes.string.isRequired,
+				id: PropTypes.string.isRequired,
+				text: PropTypes.node.isRequired
+			}
+		),
+	removeTask: PropTypes.func.isRequired,
+	changeStatusTask: PropTypes.func.isRequired
 };
