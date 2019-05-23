@@ -9,7 +9,7 @@ class Header extends React.Component {
           <p>Список задач</p>
           <button 
             id="buttonAdd"
-            onClick={()=>{this.props.openCreateTaskModalVisible()}}
+            onClick={this.props.openCreateTaskModalVisible}
           >Добавить</button>
         </div>
     );

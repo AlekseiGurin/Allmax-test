@@ -12,33 +12,32 @@ export default class App extends React.Component {
 			visibleModal: false,
 			tasks: []
 		};
-		this.removeTask=this.removeTask.bind(this)
+		this.removeTask = this.removeTask.bind(this);
 	};
 
 	openCreateTaskModalVisible = () => {
-		this.setState({visibleModal:true})
+		this.setState( {visibleModal: true} );
 	};
 
-	closeCreateTaskModal= () => {
-		this.setState({visibleModal:false})
+	closeCreateTaskModal = () => {
+		this.setState( {visibleModal: false} );
 	};
 
 	addTask = (taskList) => {
-		const newTasks = [taskList, ...this.state.tasks]
-		this.setState({tasks: newTasks})
-		console.log(taskList)
+		const newTasks = [taskList, ...this.state.tasks];
+		this.setState( {tasks: newTasks} );
 	};
 
 	removeTask = (id) => {
-		const lastTask = this.state.tasks.filter(task=>task.id !== id)
-		this.setState({tasks:lastTask})
+		const lastTask = this.state.tasks.filter(task => task.id !== id);
+		this.setState( {tasks: lastTask} );
 	};
 
 	changeStatusTask = (status,id) => {
 		this.setState(prevState => {
-			const updateTask = prevState.tasks.map(task=>{
+			const updateTask = prevState.tasks.map(task => {
 				if (task.id === id) {
-					task.status='DONE';
+					task.status === 'OPEN' ? task.status = 'DONE' : task.status = 'OPEN'
 				};
 				return task;
 			});

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
  class Modal extends React.Component {
 	
-	handleCreateTaskSubmit =(e)=> {
+	handleCreateTaskSubmit = (e) => {
 			e.preventDefault();
 			if (this.textInput.value) {
 				this.props.addTask({
@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 				} else {this.props.closeCreateTaskModal()};	
 		};
 
-	handleClickCloseModal =(e)=> {
+	handleClickCloseModal = (e) => {
 		const wrapper = document.getElementById('jsWrapper');
 		const btnCancel = document.getElementById('cancel');
 		if (e.target === wrapper || e.target === btnCancel){
@@ -26,26 +26,26 @@ import PropTypes from 'prop-types';
 
 	render() {
 		return(
-				<div 
-					onClick={this.handleClickCloseModal}
-					id="jsWrapper" 
-					className="modal-wrapper"
-				>
-				<div 
-					className="modal-container"	
-				>
-					<form onSubmit={this.handleCreateTaskSubmit}>
-				  		<input 
-				  			ref={(input)=> {this.textInput=input}}
-				  			id="jsInput"
-				  			type="text" 
-				  			placeholder="Введите задачу"
-				  		/>
-				  		<button id="btnSubmit" htmlype="submit">ok</button>
-				  		<button type="button" id="cancel" >отмена</button> 
-					</form>
-				</div>
-				</div>
+			<div 
+				onClick={this.handleClickCloseModal}
+				id="jsWrapper" 
+				className="modal-wrapper"
+			>
+			<div 
+				className="modal-container"	
+			>
+				<form onSubmit={this.handleCreateTaskSubmit}>
+				  	<input 
+				  		ref={(input)=> {this.textInput=input}}
+				  		id="jsInput"
+				  		type="text" 
+				  		placeholder="Введите задачу"
+				  	/>
+				  	<button id="btnSubmit" htmlype="submit">ok</button>
+				  	<button type="button" id="cancel" >отмена</button> 
+				</form>
+			</div>
+			</div>
 			);
 	};
 };
