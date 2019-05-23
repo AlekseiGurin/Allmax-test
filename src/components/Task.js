@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 
 export default  class Task extends React.Component {
 	
-	handlerRemoveTask = (e) => {
-		const {id} = this.props.taskList;
-		this.props.removeTask(id, e);	 
+	handlerRemoveTaskClick = () => {
+		const { id } = this.props.task;
+		this.props.removeTask(id);	 
 	};
 
-	handlerChangeStatusTask = (e) => {
-		const {status, id} = this.props.taskList;
+	handlerChangeStatusTask = () => {
+		const { status, id } = this.props.task;
 		this.props.changeStatusTask(status, id);
 	};
 
     render () {
-    	const {text, status}=this.props.taskList;
+    	const { text, status } = this.props.task;
         return (
             <div className="task" >
             	<div className={status.toLowerCase()}>
@@ -25,15 +25,15 @@ export default  class Task extends React.Component {
               		{text}
               	</div>
               	<button
-              		onClick={this.handlerRemoveTask}
+              		onClick={this.handlerRemoveTaskClick}
               	><i className="fa fa-trash-o" aria-hidden="true" /></button>
             </div>
         );
     };
-};
+}
 
 Task.propTypes = {
-	taskList: PropTypes.shape(
+	task: PropTypes.shape(
 			{
 				status: PropTypes.string,
 				id: PropTypes.string,

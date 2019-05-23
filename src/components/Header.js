@@ -14,7 +14,7 @@ class Header extends React.Component {
         </div>
     );
   };
-};
+}
 
 Header.propTypes = {
   openCreateTaskModalVisible: PropTypes.func.isRequired
