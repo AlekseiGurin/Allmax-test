@@ -9,8 +9,8 @@ export default  class Task extends React.Component {
 	};
 
 	handlerChangeStatusTask = () => {
-		const { status, id } = this.props.task;
-		this.props.changeStatusTask(status, id);
+		const { id } = this.props.task;
+		this.props.changeStatusTask(id);
 	};
 
     render () {

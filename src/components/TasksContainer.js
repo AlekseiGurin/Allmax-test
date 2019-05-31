@@ -2,25 +2,27 @@ import React from 'react';
 import Task from './Task.js';
 import PropTypes from 'prop-types';
 
-const TasksContainer = ({ changeStatusTask, removeTask, taskList }) => (
+const TasksContainer = ({ tasksList, removeTask, changeStatusTask }) => {
+	return (
+	
 	<div className="tasks-container">
  		{
- 			taskList.length ? (
- 				taskList.map(item => (
+ 			tasksList.length ? (
+ 				tasksList.map(item => (
  					<Task 
- 						 changeStatusTask={changeStatusTask}
- 						 removeTask={removeTask}
- 						 key={item.id} 
- 						 task={item}
+ 						changeStatusTask={changeStatusTask}
+ 						removeTask={removeTask}
+ 						key={item.id} 
+ 						task={item}
  					/>
  					))
  				) : (<div>Нет задач</div>)
  		}	
 	</div>			
-)
+)}
 	
 TasksContainer.propTypes = {
-	taskList: PropTypes.arrayOf(PropTypes.object).isRequired,
+	tasksList: PropTypes.arrayOf(PropTypes.object).isRequired,
 	changeStatusTask: PropTypes.func.isRequired,
 	removeTask: PropTypes.func.isRequired
 };
