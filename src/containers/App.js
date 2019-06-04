@@ -4,47 +4,33 @@ import Header from '../components/Header';
 import TasksContainer from '../components/TasksContainer';
 import Modal from '../components/Modal';
 import { connect } from 'react-redux';
-import { setVisibleModal } from '../actions/ModalOpenAction';
 import { bindActionCreators } from 'redux';
-import { setCloseModal } from '../actions/ModalAction';
-import { addTask } from '../actions/AddTaskAction';
-import { removeTask } from '../actions/RemoveTaskAction';
-import { changeStatusTask } from '../actions/ChangeStatusTaskAction';
+import { openCreateTaskModal, closeCreateTaskModal } from '../actions/ModalAction';
+import { addTask, removeTask, changeTaskStatus } from '../actions/TaskAction';
 
 class App extends React.Component {
 
-	changeStatusTask = () => {
-		/*this.setState(prevState => {
-			const updateTask = prevState.tasks.map(task => {
-				if (task.id === id) {
-					task.status === 'OPEN' ? task.status = 'DONE' : task.status = 'OPEN'
-				}
-				return task;
-			});
-			return {tasks: updateTask};
-		});*/
-	};
 	render() {	
       const { 
       	tasksList, 
-      	setVisibleModal, 
-      	setCloseModal,
+      	openCreateTaskModal, 
+      	closeCreateTaskModal,
       	addTask,
       	removeTask,
-      	changeStatusTask 
+      	changeTaskStatus 
       } = this.props;
 		return (
 			<div className="app">
-				<Header openCreateTaskModalVisible={setVisibleModal}/>
+				<Header openCreateTaskModal={openCreateTaskModal}/>
 				<TasksContainer 
 					tasksList={tasksList}
 					removeTask={removeTask}
-					changeStatusTask={changeStatusTask}
+					changeTaskStatus={changeTaskStatus}
 				/>
 				{this.props.visibleModal && 
 					<Modal
 						addTask={addTask}
-						closeCreateTaskModal={setCloseModal} 
+						closeCreateTaskModal={closeCreateTaskModal} 
 					/>
 				}
 				
@@ -62,11 +48,11 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators({
-		setVisibleModal, 
-		setCloseModal,
+		openCreateTaskModal, 
+		closeCreateTaskModal,
 		addTask,
 		removeTask,
-		changeStatusTask, 
+		changeTaskStatus, 
 	},dispatch)	
 };
 

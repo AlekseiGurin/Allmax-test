@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 					status: 'OPEN',
 					id: uuid(),
 					text: this.textInput.value	
-					});
+				});
 				this.props.closeCreateTaskModal();
 				} else {this.props.closeCreateTaskModal()};	
 		};
@@ -31,9 +31,7 @@ import PropTypes from 'prop-types';
 				id="jsWrapper" 
 				className="modal-wrapper"
 			>
-			<div 
-				className="modal-container"	
-			>
+			<div className="modal-container">
 				<form onSubmit={this.handleCreateTaskSubmit}>
 				  	<input 
 				  		ref={(input)=> {this.textInput=input}}
@@ -46,9 +44,9 @@ import PropTypes from 'prop-types';
 				</form>
 			</div>
 			</div>
-			);
+		);
 	};
-};
+}
 
 Modal.propTypes = {
 	closeCreateTaskModal: PropTypes.func.isRequired,

@@ -1,6 +1,4 @@
-import { ADD_TASK } from '../actions/AddTaskAction';
-import { REMOVE_TASK } from '../actions/RemoveTaskAction';
-import { CHANGE_STATUS_TASK } from '../actions/ChangeStatusTaskAction';
+import { ADD_TASK, REMOVE_TASK, CHANGE_TASK_STATUS } from '../constants/constantsTask';
 
 const initialState = {
 	tasksList: [],
@@ -22,11 +20,11 @@ export const taskContainerReducer = (state = initialState,action) => {
 				return { ...state, tasksList: newTasklist };
 			}
 
-		case CHANGE_STATUS_TASK: {
-			const { id } = action.payload;
+		case CHANGE_TASK_STATUS: {
+			const { id, status } = action.payload;
 			const updateTask = state.tasksList.map(task => {
 				if (task.id === id) {
-					task.status === 'OPEN' ? task.status = 'DONE' : task.status = 'OPEN';
+					task.status = status;
 				};
 				return task;
 			});

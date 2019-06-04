@@ -8,7 +8,7 @@ class Header extends React.Component {
           <p>Список задач</p>
           <button 
             id="buttonAdd"
-            onClick={this.props.openCreateTaskModalVisible}
+            onClick={this.props.openCreateTaskModal}
           >Добавить</button>
         </div>
     );
@@ -16,8 +16,7 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  openCreateTaskModalVisible: PropTypes.func.isRequired
+  openCreateTaskModal: PropTypes.func.isRequired
 };
 
 export default Header;
-

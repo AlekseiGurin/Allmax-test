@@ -1,5 +1,4 @@
-import { SET_VISIBLE_MODAL } from '../actions/ModalOpenAction';
-import {  SET_CLOSE_MODAL } from '../actions/ModalAction';
+import { OPEN_CREATE_TASK_MODAL, CLOSE_CREATE_TASK_MODAL } from '../constants/constantsModal';
 
 const initialState = {
 	visibleModal: false,
@@ -7,11 +6,11 @@ const initialState = {
 
 export const modalReducer = (state = initialState, action) => {
 	switch(action.type) {
-		case SET_VISIBLE_MODAL: {
+		case OPEN_CREATE_TASK_MODAL: {
 				return { ...state, visibleModal: true};
 			}
 
-		case SET_CLOSE_MODAL: {
+		case CLOSE_CREATE_TASK_MODAL: {
 			return { ...state,visibleModal:false };
 		}
 

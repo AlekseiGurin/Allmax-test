@@ -9,8 +9,14 @@ export default  class Task extends React.Component {
 	};
 
 	handlerChangeStatusTask = () => {
-		const { id } = this.props.task;
-		this.props.changeStatusTask(id);
+		let { id, status } = this.props.task;
+		const chbox = document.getElementById('jsChecked');
+		if(chbox.checked) {
+			status = 'DONE';
+		} else {
+			status = 'OPEN';
+		};
+		this.props.changeTaskStatus(id, status);
 	};
 
     render () {
@@ -19,6 +25,7 @@ export default  class Task extends React.Component {
             <div className="task" >
             	<div className={status.toLowerCase()}>
               		<input 
+              			id="jsChecked"
               			onChange={this.handlerChangeStatusTask}
               			type="checkbox" 
               		/>
@@ -37,9 +44,9 @@ Task.propTypes = {
 			{
 				status: PropTypes.string,
 				id: PropTypes.string,
-				text: PropTypes.node
+				text: PropTypes.string
 			}
 		).isRequired,
 	removeTask: PropTypes.func.isRequired,
-	changeStatusTask: PropTypes.func.isRequired
+	changeTaskStatus: PropTypes.func.isRequired
 };
